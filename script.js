@@ -31,7 +31,7 @@ const appsData = [
         id: 3,
         name: "Smart Business Helper",
         type: "Business Tool",
-        category: "business",
+        category: "individual",
         description: "Simple AI-powered tools to help small businesses grow. From inventory tracking to customer management - made beautifully simple.",
         technologies: ["Gemini AI", "Business Analytics", "Easy Setup"],
         icon: "📊",
@@ -62,6 +62,9 @@ const heroAppsGridDesktop = document.getElementById('heroAppsGridDesktop');
 const featuredAppCard = document.getElementById('featuredAppCard');
 const contactBtn = document.getElementById('contactBtn');
 
+// Global filter state
+let selectedCategories = ['all'];
+
 // Load apps on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadApps();
@@ -70,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeInteractions();
     initializeScrollAnimations();
     addMagicalEffects();
+    initializeFilters();
 });
 
 // Load and display apps in hero section (mobile/tablet)
@@ -465,6 +469,123 @@ function searchApps(query) {
     );
 }
 
+// Initialize filter functionality
+function initializeFilters() {
+    const filterChips = document.querySelectorAll('.filter-chip');
+    
+    filterChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            const category = this.dataset.category;
+            handleFilterClick(category, this);
+        });
+    });
+}
+
+// Handle filter chip clicks with multiple selection
+function handleFilterClick(category, chipElement) {
+    if (category === 'all') {
+        // If "All" is clicked, deselect everything else
+        selectedCategories = ['all'];
+        updateFilterChipsUI();
+    } else {
+        // Remove "all" if a specific category is selected
+        if (selectedCategories.includes('all')) {
+            selectedCategories = [];
+        }
+        
+        // Toggle the clicked category
+        if (selectedCategories.includes(category)) {
+            selectedCategories = selectedCategories.filter(cat => cat !== category);
+            
+            // If no categories selected, default to "all"
+            if (selectedCategories.length === 0) {
+                selectedCategories = ['all'];
+            }
+        } else {
+            selectedCategories.push(category);
+        }
+        
+        updateFilterChipsUI();
+    }
+    
+    // Filter and display apps
+    filterAndDisplayApps();
+}
+
+// Update filter chips visual state
+function updateFilterChipsUI() {
+    const filterChips = document.querySelectorAll('.filter-chip');
+    
+    filterChips.forEach(chip => {
+        const category = chip.dataset.category;
+        if (selectedCategories.includes(category)) {
+            chip.classList.add('active');
+        } else {
+            chip.classList.remove('active');
+        }
+    });
+}
+
+// Filter and display apps based on selected categories
+function filterAndDisplayApps() {
+    if (!appsGrid) return;
+    
+    appsGrid.innerHTML = '';
+    
+    let filteredApps;
+    
+    if (selectedCategories.includes('all')) {
+        filteredApps = [...appsData];
+    } else {
+        filteredApps = appsData.filter(app => 
+            selectedCategories.includes(app.category)
+        );
+    }
+    
+    // Sort apps to show featured ones first
+    filteredApps.sort((a, b) => {
+        if (a.featured && !b.featured) return -1;
+        if (!a.featured && b.featured) return 1;
+        return 0;
+    });
+    
+    filteredApps.forEach(app => {
+        const appCard = createAppCard(app);
+        appsGrid.appendChild(appCard);
+    });
+    
+    // Reinitialize interactions for new cards
+    initializeAppCardInteractions();
+}
+
+// Initialize app card interactions (extracted from initializeInteractions)
+function initializeAppCardInteractions() {
+    // Add magical hover effects to app cards
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        card.addEventListener('mouseenter', function() {
+            createSparkleEffect(this);
+        });
+        
+        card.addEventListener('click', function() {
+            this.classList.add('clicked');
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 200);
+        });
+        
+        // Add staggered animation
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = `opacity 0.6s ease ${index * 0.15}s, transform 0.6s ease ${index * 0.15}s`;
+        
+        // Trigger animation
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 50);
+    });
+}
+
 // Export functions for easy management
 window.appsManager = {
     addApp,
@@ -472,7 +593,9 @@ window.appsManager = {
     filterApps,
     searchApps,
     appsData,
-    loadApps
+    loadApps,
+    filterAndDisplayApps,
+    selectedCategories
 };
 
 // Add CSS animations dynamically
