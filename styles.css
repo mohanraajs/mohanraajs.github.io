@@ -105,9 +105,21 @@
 }
 
 .hero-app-icon {
-    font-size: 3rem;
-    line-height: 1;
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    background: white;
     animation: bounce 2s ease-in-out infinite;
+}
+
+.hero-app-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
 @keyframes bounce {
@@ -531,8 +543,20 @@ p {
     }
     
     .featured-app-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        margin: 0 auto 1rem auto;
+        background: white;
+    }
+    
+    .featured-app-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
     }
     
     .featured-app-name {
@@ -1311,15 +1335,18 @@ p {
 .project-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
     border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: white;
+    overflow: hidden;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     flex-shrink: 0;
+    background: white;
+}
+
+.project-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
 .project-info h3 {
@@ -1745,4 +1772,20 @@ p {
 
 .mission-card:hover .card-icon {
     animation: bounce 1s ease-in-out;
+}
+
+/* General image styling for app icons */
+.project-icon img,
+.hero-app-icon img,
+.featured-app-icon img,
+.desktop-hero-app-icon img {
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.project-icon:hover img,
+.hero-app-icon:hover img,
+.featured-app-icon:hover img,
+.desktop-hero-app-icon:hover img {
+    transform: scale(1.05);
 }
