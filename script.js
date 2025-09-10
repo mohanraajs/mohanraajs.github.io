@@ -57,15 +57,50 @@ const appsData = [
 
 // DOM Elements
 const appsGrid = document.getElementById('projectsGrid');
+const heroAppsGrid = document.getElementById('heroAppsGrid');
+const heroAppsGridDesktop = document.getElementById('heroAppsGridDesktop');
+const featuredAppCard = document.getElementById('featuredAppCard');
 const contactBtn = document.getElementById('contactBtn');
 
 // Load apps on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadApps();
+    loadHeroApps();
+    loadFeaturedApp();
     initializeInteractions();
     initializeScrollAnimations();
     addMagicalEffects();
 });
+
+// Load and display apps in hero section (mobile/tablet)
+function loadHeroApps() {
+    if (!heroAppsGrid) return;
+    
+    heroAppsGrid.innerHTML = '';
+    
+    // Get only featured apps for hero section
+    const featuredApps = appsData.filter(app => app.featured);
+    
+    featuredApps.forEach(app => {
+        const heroCard = createHeroAppCard(app);
+        heroAppsGrid.appendChild(heroCard);
+    });
+}
+
+// Load single featured app for desktop hero
+function loadFeaturedApp() {
+    if (!featuredAppCard) return;
+    
+    featuredAppCard.innerHTML = '';
+    
+    // Get the primary featured app (Family Tree App)
+    const primaryApp = appsData.find(app => app.id === 1); // Family Tree App
+    
+    if (primaryApp) {
+        const featuredCard = createFeaturedAppCard(primaryApp);
+        featuredAppCard.appendChild(featuredCard);
+    }
+}
 
 // Load and display apps
 function loadApps() {
@@ -84,6 +119,110 @@ function loadApps() {
         const appCard = createAppCard(app);
         appsGrid.appendChild(appCard);
     });
+}
+
+// Create featured app card for desktop hero
+function createFeaturedAppCard(app) {
+    const card = document.createElement('div');
+    card.className = `featured-app-main ${app.comingSoon ? 'coming-soon' : ''}`;
+    
+    const appLink = app.comingSoon ? 
+        '<div class="featured-app-status">🚀 Coming Soon!</div>' :
+        `<a href="${app.playStoreUrl || '#'}" target="_blank" rel="noopener noreferrer" class="featured-app-download">
+            <i class="fab fa-google-play"></i> Download Now
+        </a>`;
+    
+    card.innerHTML = `
+        <div class="featured-app-icon">${app.icon}</div>
+        <h4 class="featured-app-name">${app.name}</h4>
+        <div class="featured-app-age">👶 ${app.ageGroup}</div>
+        ${appLink}
+    `;
+    
+    // Add click handler for app card
+    if (!app.comingSoon && app.playStoreUrl) {
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.featured-app-download')) {
+                window.open(app.playStoreUrl, '_blank', 'noopener noreferrer');
+            }
+        });
+        card.style.cursor = 'pointer';
+    }
+    
+    return card;
+}
+
+// Create desktop hero app card (specialized for desktop layout)
+function createDesktopHeroAppCard(app) {
+    const card = document.createElement('div');
+    card.className = `desktop-hero-app-card ${app.comingSoon ? 'coming-soon' : ''}`;
+    
+    const appLink = app.comingSoon ? 
+        '<div class="desktop-hero-app-status">🚀 Coming Soon!</div>' :
+        `<a href="${app.playStoreUrl || '#'}" target="_blank" rel="noopener noreferrer" class="desktop-hero-app-link">
+            <i class="fas fa-download"></i> Download
+        </a>`;
+    
+    card.innerHTML = `
+        <div class="desktop-hero-app-header">
+            <div class="desktop-hero-app-icon">${app.icon}</div>
+            <div class="desktop-hero-app-info">
+                <h4 class="desktop-hero-app-name">${app.name}</h4>
+                <p class="desktop-hero-app-type">${app.type}</p>
+            </div>
+        </div>
+        <div class="desktop-hero-app-meta">
+            <div class="desktop-hero-app-age">👶 ${app.ageGroup}</div>
+            <div class="desktop-hero-app-safety">${app.safety[0]}</div>
+        </div>
+        ${appLink}
+    `;
+    
+    // Add click handler for app cards
+    if (!app.comingSoon && app.playStoreUrl) {
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.desktop-hero-app-link')) {
+                window.open(app.playStoreUrl, '_blank', 'noopener noreferrer');
+            }
+        });
+        card.style.cursor = 'pointer';
+    }
+    
+    return card;
+}
+
+// Create hero app card (compact version for hero section)
+function createHeroAppCard(app) {
+    const card = document.createElement('div');
+    card.className = `hero-app-card ${app.comingSoon ? 'coming-soon' : ''}`;
+    
+    const appLink = app.comingSoon ? 
+        '<div class="hero-app-status">🚀 Soon!</div>' :
+        `<a href="${app.playStoreUrl || '#'}" target="_blank" rel="noopener noreferrer" class="hero-app-link">
+            <i class="fas fa-download"></i>
+        </a>`;
+    
+    card.innerHTML = `
+        <div class="hero-app-icon">${app.icon}</div>
+        <div class="hero-app-info">
+            <h4 class="hero-app-name">${app.name}</h4>
+            <p class="hero-app-type">${app.type}</p>
+            <div class="hero-app-age">👶 ${app.ageGroup}</div>
+        </div>
+        ${appLink}
+    `;
+    
+    // Add click handler for app cards
+    if (!app.comingSoon && app.playStoreUrl) {
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.hero-app-link')) {
+                window.open(app.playStoreUrl, '_blank', 'noopener noreferrer');
+            }
+        });
+        card.style.cursor = 'pointer';
+    }
+    
+    return card;
 }
 
 // Create individual app card
@@ -173,6 +312,22 @@ function initializeInteractions() {
             }, 200);
         });
     });
+    
+    // Add magical hover effects to hero app cards
+    document.querySelectorAll('.hero-app-card').forEach((card, index) => {
+        card.addEventListener('mouseenter', function() {
+            // Add sparkle effect on hover
+            createSparkleEffect(this);
+        });
+        
+        // Add click effect for mobile
+        card.addEventListener('click', function() {
+            this.classList.add('clicked');
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 200);
+        });
+    });
 }
 
 // Initialize scroll animations
@@ -209,6 +364,14 @@ function initializeScrollAnimations() {
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
         card.style.transition = `opacity 0.6s ease ${index * 0.15}s, transform 0.6s ease ${index * 0.15}s`;
+        observer.observe(card);
+    });
+    
+    // Observe hero app cards for staggered animation
+    document.querySelectorAll('.hero-app-card').forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `opacity 0.8s ease ${index * 0.2}s, transform 0.8s ease ${index * 0.2}s`;
         observer.observe(card);
     });
 }
