@@ -290,8 +290,10 @@ body {
     font-family: 'Nunito', sans-serif;
     line-height: 1.6;
     color: #2d3748;
-    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 50%, #6be6e5 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
     background-attachment: fixed;
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
 }
 
 /* Beta Badge */
@@ -300,7 +302,7 @@ body {
     top: 20px;
     right: 20px;
     z-index: 1000;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     border-radius: 25px;
     padding: 8px 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -323,7 +325,7 @@ body {
     }
     50% { 
         transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
 }
 
@@ -395,12 +397,12 @@ p {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #ff5252 0%, #26a69a 100%);
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
@@ -431,7 +433,9 @@ p {
 
 /* Hero Section - Optimized for No Scroll */
 .hero {
-    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 50%, #6be6e5 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     color: white;
     padding: 20px 0;
     height: 100vh;
@@ -689,11 +693,13 @@ p {
 }
 
 .highlight {
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: colorShift 3s ease-in-out infinite;
+    animation: colorShift 4s ease-in-out infinite;
+    font-weight: 900;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-subtitle {
@@ -801,16 +807,40 @@ p {
 }
 
 .highlight {
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: colorShift 3s ease-in-out infinite;
+    animation: colorShift 4s ease-in-out infinite;
+    font-weight: 900;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes colorShift {
-    0%, 100% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(90deg); }
+    0%, 100% { 
+        background-position: 0% 50%;
+        filter: brightness(1);
+    }
+    25% {
+        background-position: 100% 50%;
+        filter: brightness(1.1);
+    }
+    50% { 
+        background-position: 50% 50%;
+        filter: brightness(1.2);
+    }
+    75% {
+        background-position: 0% 50%;
+        filter: brightness(1.1);
+    }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 100% 0%; }
+    75% { background-position: 0% 100%; }
+    100% { background-position: 0% 50%; }
 }
 
 .hero-subtitle {
@@ -1235,8 +1265,23 @@ p {
 }
 
 .branding-icon {
-    font-size: 3rem;
-    animation: pulse 2s ease-in-out infinite;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+.branding-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .branding-text h3 {
@@ -1253,9 +1298,15 @@ p {
     font-weight: 500;
 }
 
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+@keyframes logoGlow {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 12px 35px rgba(102, 126, 234, 0.3);
+    }
 }
 
 /* Mobile responsive for branding */
@@ -1267,6 +1318,11 @@ p {
     
     .branding-card {
         padding: 1.5rem;
+    }
+    
+    .branding-icon {
+        width: 60px;
+        height: 60px;
     }
     
     .branding-text h3 {
@@ -1297,7 +1353,7 @@ p {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
 }
 
 .project-card:hover {
@@ -1306,8 +1362,8 @@ p {
 }
 
 .project-card.featured {
-    border: 3px solid #ff6b6b;
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.05), rgba(78, 205, 196, 0.05));
+    border: 3px solid #667eea;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
     transform: scale(1.05);
 }
 
@@ -1316,7 +1372,7 @@ p {
     position: absolute;
     top: 20px;
     right: -35px;
-    background: linear-gradient(135deg, #ff6b6b, #ff5252);
+    background: linear-gradient(135deg, #667eea, #5a67d8);
     color: white;
     padding: 8px 50px;
     transform: rotate(45deg);
@@ -1373,7 +1429,7 @@ p {
     align-items: center;
     gap: 0.4rem;
     padding: 8px 16px;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     text-decoration: none;
     border-radius: 25px;
@@ -1384,7 +1440,7 @@ p {
 }
 
 .project-link:hover {
-    background: linear-gradient(135deg, #ff5252, #26a69a);
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
