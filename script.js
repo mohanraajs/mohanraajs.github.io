@@ -3,59 +3,95 @@ const appsData = [
     {
         id: 1,
         name: "Family Tree App",
-        type: "Family Connection",
         category: "family",
         description: "Help your family discover their roots! A magical way to create, explore, and share your family tree. Perfect for kids to learn about their heritage and grandparents to preserve precious memories.",
-        technologies: ["Android", "Family-Safe", "Memory Preservation"],
         playStoreUrl: "https://play.google.com/store/apps/details?id=com.mspk.app.ft.familytree&hl=en_IN",
         icon: "🌳",
         featured: true,
-        ageGroup: "All Ages",
-        safety: ["Ad-Free", "Child-Safe", "Privacy Protected"]
+        ageGroup: "All Ages"
     },
     // Coming soon apps - AI powered adventures
     {
         id: 2,
         name: "AI Learning Adventure",
-        type: "Educational Game",
         category: "kids",
         description: "An amazing AI companion that adapts to your child's learning style! Interactive stories, puzzles, and games that grow with your little one.",
-        technologies: ["Gemini AI", "Adaptive Learning", "Kid-Safe"],
         icon: "🤖",
         featured: true,
         comingSoon: true,
-        ageGroup: "3-12 Years",
-        safety: ["AI-Safe", "Ad-Free", "Parent Dashboard"]
+        ageGroup: "3-12 Years"
     },
     {
         id: 3,
         name: "Smart Business Helper",
-        type: "Business Tool",
         category: "individual",
         description: "Simple AI-powered tools to help small businesses grow. From inventory tracking to customer management - made beautifully simple.",
-        technologies: ["Gemini AI", "Business Analytics", "Easy Setup"],
         icon: "📊",
         featured: false,
         comingSoon: true,
-        ageGroup: "Adults",
-        safety: ["Secure", "Private", "Reliable"]
+        ageGroup: "Adults"
     },
     {
         id: 4,
         name: "Story Creator Kids",
-        type: "Creative Tool", 
         category: "kids",
         description: "Let your kids create magical stories with AI! Draw characters, build worlds, and watch their imagination come to life in interactive tales.",
-        technologies: ["Gemini AI", "Creative Tools", "Imagination"],
         icon: "📚",
         featured: false,
         comingSoon: true,
-        ageGroup: "5-12 Years",
-        safety: ["Creative-Safe", "Parent Controls", "Ad-Free"]
+        ageGroup: "5-12 Years"
+    },
+    {
+        id: 5,
+        name: "Family Budget Tracker",
+        category: "family",
+        description: "Simple and beautiful budget tracking for families. Set goals, track expenses, and teach kids about money management.",
+        icon: "💰",
+        featured: false,
+        comingSoon: true,
+        ageGroup: "All Ages"
+    },
+    {
+        id: 6,
+        name: "Kid's Coding Adventure",
+        category: "kids",
+        description: "Fun introduction to programming concepts through colorful games and interactive challenges that kids love.",
+        icon: "💻",
+        featured: false,
+        comingSoon: true,
+        ageGroup: "6-14 Years"
+    },
+    {
+        id: 7,
+        name: "Personal Task Master",
+        category: "individual",
+        description: "Clean, minimal task manager that helps you get things done. Smart reminders and goal tracking included.",
+        icon: "✅",
+        featured: false,
+        comingSoon: true,
+        ageGroup: "Adults"
+    },
+    {
+        id: 8,
+        name: "Family Recipe Book",
+        category: "family",
+        description: "Preserve family recipes and cooking traditions. Share with family members and pass down culinary heritage.",
+        icon: "👨‍🍳",
+        featured: false,
+        comingSoon: true,
+        ageGroup: "All Ages"
+    },
+    {
+        id: 9,
+        name: "Math Games for Kids",
+        category: "kids",
+        description: "Make math fun with colorful games and challenges. Adaptive difficulty keeps kids engaged and learning.",
+        icon: "🔢",
+        featured: false,
+        comingSoon: true,
+        ageGroup: "4-12 Years"
     }
-];
-
-// DOM Elements
+];// DOM Elements
 const appsGrid = document.getElementById('projectsGrid');
 const heroAppsGrid = document.getElementById('heroAppsGrid');
 const heroAppsGridDesktop = document.getElementById('heroAppsGridDesktop');
@@ -172,12 +208,10 @@ function createDesktopHeroAppCard(app) {
             <div class="desktop-hero-app-icon">${app.icon}</div>
             <div class="desktop-hero-app-info">
                 <h4 class="desktop-hero-app-name">${app.name}</h4>
-                <p class="desktop-hero-app-type">${app.type}</p>
             </div>
         </div>
         <div class="desktop-hero-app-meta">
             <div class="desktop-hero-app-age">👶 ${app.ageGroup}</div>
-            <div class="desktop-hero-app-safety">${app.safety[0]}</div>
         </div>
         ${appLink}
     `;
@@ -210,7 +244,6 @@ function createHeroAppCard(app) {
         <div class="hero-app-icon">${app.icon}</div>
         <div class="hero-app-info">
             <h4 class="hero-app-name">${app.name}</h4>
-            <p class="hero-app-type">${app.type}</p>
             <div class="hero-app-age">👶 ${app.ageGroup}</div>
         </div>
         ${appLink}
@@ -234,14 +267,6 @@ function createAppCard(app) {
     const card = document.createElement('div');
     card.className = `project-card ${app.featured ? 'featured' : ''} ${app.comingSoon ? 'coming-soon' : ''}`;
     
-    const techTags = app.technologies.map(tech => 
-        `<span class="tech-tag">${tech}</span>`
-    ).join('');
-    
-    const safetyBadges = app.safety.map(badge => 
-        `<span class="safety-badge">✅ ${badge}</span>`
-    ).join('');
-    
     const appLinks = app.comingSoon ? 
         '<div class="project-links"><div class="coming-soon-label">🚀 Coming Soon!</div></div>' :
         `<div class="project-links">
@@ -257,13 +282,10 @@ function createAppCard(app) {
             <div class="project-icon">${app.icon}</div>
             <div class="project-info">
                 <h3>${app.name}</h3>
-                <div class="project-type">${app.type}</div>
                 ${ageGroupBadge}
             </div>
         </div>
         <div class="project-description">${app.description}</div>
-        <div class="project-tech">${techTags}</div>
-        <div class="safety-badges">${safetyBadges}</div>
         ${appLinks}
     `;
     
@@ -464,8 +486,7 @@ function searchApps(query) {
     const searchTerm = query.toLowerCase();
     return appsData.filter(app => 
         app.name.toLowerCase().includes(searchTerm) ||
-        app.description.toLowerCase().includes(searchTerm) ||
-        app.technologies.some(tech => tech.toLowerCase().includes(searchTerm))
+        app.description.toLowerCase().includes(searchTerm)
     );
 }
 
@@ -613,22 +634,6 @@ styleSheet.innerHTML = `
     
     .project-card.clicked {
         transform: scale(0.95) !important;
-    }
-    
-    .safety-badges {
-        display: flex;
-        gap: 0.5rem;
-        margin: 1rem 0;
-        flex-wrap: wrap;
-    }
-    
-    .safety-badge {
-        background: linear-gradient(135deg, #48bb78, #38a169);
-        color: white;
-        padding: 4px 10px;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        font-weight: 500;
     }
     
     .age-group {
