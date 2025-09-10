@@ -1240,7 +1240,10 @@ p {
 }
 
 .branding-card {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+    background-attachment: fixed;
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     padding: 2rem;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     max-width: 600px;
