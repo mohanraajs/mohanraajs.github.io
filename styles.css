@@ -1241,13 +1241,11 @@ p {
 
 .branding-card {
     background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 20px;
     padding: 2rem;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    border: 3px solid rgba(255, 255, 255, 0.2);
     max-width: 600px;
     width: 100%;
-    text-align: center;
+    text-align: left;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -1259,7 +1257,7 @@ p {
 .branding-content {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1.5rem;
     flex-wrap: wrap;
 }
@@ -1267,21 +1265,18 @@ p {
 .branding-icon {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     background: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: logoGlow 3s ease-in-out infinite;
 }
 
 .branding-icon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
 }
 
 .branding-text h3 {
