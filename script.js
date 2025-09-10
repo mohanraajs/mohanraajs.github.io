@@ -410,50 +410,14 @@ function createSparkleEffect(element) {
 
 // Create floating particles effect
 function createFloatingParticles() {
-    const particles = ['⭐', '🌟', '💫', '✨', '🎈', '🎉'];
-    
-    setInterval(() => {
-        if (Math.random() > 0.7) { // 30% chance
-            const particle = document.createElement('div');
-            particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
-            particle.style.position = 'fixed';
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = window.innerHeight + 'px';
-            particle.style.fontSize = '1.5rem';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = '1';
-            particle.style.animation = 'floatUp 4s linear forwards';
-            
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 4000);
-        }
-    }, 2000);
+    // Disabled floating particles
+    return;
 }
 
 // Add floating hearts effect
 function addFloatingHearts() {
-    for (let i = 0; i < 3; i++) {
-        setTimeout(() => {
-            const heart = document.createElement('div');
-            heart.innerHTML = '💖';
-            heart.style.position = 'fixed';
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.top = window.innerHeight + 'px';
-            heart.style.fontSize = '2rem';
-            heart.style.pointerEvents = 'none';
-            heart.style.zIndex = '1';
-            heart.style.animation = 'floatUp 3s ease-out forwards';
-            
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 3000);
-        }, i * 500);
-    }
+    // Disabled floating hearts
+    return;
 }
 
 // Add rainbow glow to featured apps
