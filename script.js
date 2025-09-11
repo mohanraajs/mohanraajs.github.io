@@ -4,7 +4,7 @@ const appsData = [
         id: 1,
         name: "Family Tree App",
         category: "family",
-        description: "Help your family discover their roots! A magical way to create, explore, and share your family tree. Perfect for kids to learn about their heritage and grandparents to preserve precious memories.",
+        description: "🌳 Family Tree – Made for Kids & Parents 🌳\nDiscover your roots together through fun and meaningful exploration!",
         playStoreUrl: "https://play.google.com/store/apps/details?id=com.mspk.app.ft.familytree&hl=en_IN",
         icon: "https://play-lh.googleusercontent.com/DibtW32tFvJhidrVJItsNuNFX1mCn2WzwyMCbEhONRC-TGFHrXpKgCdEhOBb0WewTeM=w240-h480-rw",
         featured: true,
@@ -13,17 +13,17 @@ const appsData = [
     // Coming soon apps - AI powered adventures
     {
         id: 2,
-        name: "AI Learning Adventure",
+        name: "Story Time",
         category: "kids",
-        description: "An amazing AI companion that adapts to your child's learning style! Interactive stories, puzzles, and games that grow with your little one.",
-        icon: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=100&h=100&fit=crop&crop=center",
+        description: "✨ Story Time – Made for Kids & Parents ✨\nCreate magical stories together through fun and imagination!",
+        playStoreUrl: "https://play.google.com/store/apps/details?id=com.mspk.st.storytime&hl=en_IN",
+        icon: "https://play-lh.googleusercontent.com/ZxLm9U-exHsy_cWSYKg0zLxbPZH6xnkBQfpF_cojoJO8vk3sUMZIQtFre39xBn9N36LTQCCiUQ-hWaFmKCZ6oQ=w240-h480-rw",
         featured: true,
-        comingSoon: true,
         ageGroup: "3-12 Years"
     },
     {
         id: 3,
-        name: "Smart Business Helper",
+        name: "Simple Ledger",
         category: "individual",
         description: "Simple AI-powered tools to help small businesses grow. From inventory tracking to customer management - made beautifully simple.",
         icon: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=100&fit=crop&crop=center",
@@ -31,66 +31,6 @@ const appsData = [
         comingSoon: true,
         ageGroup: "Adults"
     },
-    {
-        id: 4,
-        name: "Story Creator Kids",
-        category: "kids",
-        description: "Let your kids create magical stories with AI! Draw characters, build worlds, and watch their imagination come to life in interactive tales.",
-        icon: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=100&h=100&fit=crop&crop=center",
-        featured: false,
-        comingSoon: true,
-        ageGroup: "5-12 Years"
-    },
-    {
-        id: 5,
-        name: "Family Budget Tracker",
-        category: "family",
-        description: "Simple and beautiful budget tracking for families. Set goals, track expenses, and teach kids about money management.",
-        icon: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=100&h=100&fit=crop&crop=center",
-        featured: false,
-        comingSoon: true,
-        ageGroup: "All Ages"
-    },
-    {
-        id: 6,
-        name: "Kid's Coding Adventure",
-        category: "kids",
-        description: "Fun introduction to programming concepts through colorful games and interactive challenges that kids love.",
-        icon: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=100&h=100&fit=crop&crop=center",
-        featured: false,
-        comingSoon: true,
-        ageGroup: "6-14 Years"
-    },
-    {
-        id: 7,
-        name: "Personal Task Master",
-        category: "individual",
-        description: "Clean, minimal task manager that helps you get things done. Smart reminders and goal tracking included.",
-        icon: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=100&h=100&fit=crop&crop=center",
-        featured: false,
-        comingSoon: true,
-        ageGroup: "Adults"
-    },
-    {
-        id: 8,
-        name: "Family Recipe Book",
-        category: "family",
-        description: "Preserve family recipes and cooking traditions. Share with family members and pass down culinary heritage.",
-        icon: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=100&h=100&fit=crop&crop=center",
-        featured: false,
-        comingSoon: true,
-        ageGroup: "All Ages"
-    },
-    {
-        id: 9,
-        name: "Math Games for Kids",
-        category: "kids",
-        description: "Make math fun with colorful games and challenges. Adaptive difficulty keeps kids engaged and learning.",
-        icon: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=100&h=100&fit=crop&crop=center",
-        featured: false,
-        comingSoon: true,
-        ageGroup: "4-12 Years"
-    }
 ];// DOM Elements
 const appsGrid = document.getElementById('projectsGrid');
 const heroAppsGrid = document.getElementById('heroAppsGrid');
