@@ -260,14 +260,65 @@ function initializeInteractions() {
     if (contactBtn) {
         contactBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            // Fun, family-friendly contact interaction
-            const messages = [
-                '🎉 Ready to create something amazing together! Let\'s chat about your magical app idea!',
-                '✨ Got a brilliant idea? I\'d love to help bring it to life for families everywhere!',
-                '🚀 Let\'s build the next wonderful app that kids and parents will absolutely love!'
-            ];
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            alert(randomMessage);
+            // Show the contact modal
+            const modal = document.getElementById('contactModal');
+            modal.style.display = 'block';
+        });
+    }
+
+    // Modal functionality
+    const modal = document.getElementById('contactModal');
+    const closeBtn = document.querySelector('.close');
+    const sendBtn = document.getElementById('sendBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const ideaInput = document.getElementById('ideaInput');
+
+    // Close modal when clicking close button
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Cancel button
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+
+    // Send button - open email with user's input
+    if (sendBtn) {
+        sendBtn.addEventListener('click', function() {
+            const userIdea = ideaInput.value.trim();
+            const ideaText = userIdea || '[Please describe your idea here]';
+            
+            const subject = "Let's Build Something Together";
+            const body = `Hi MohanRaaj,
+
+I saw your website and I'm interested in building a simple, useful tool/app. \nHere's my idea:
+
+${ideaText}
+
+Looking forward to hearing from you!
+
+Best regards,
+[Your name]`;
+
+            const mailtoLink = `mailto:mohan.raaj.s@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Close modal
+            modal.style.display = 'none';
         });
     }
     
