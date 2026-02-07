@@ -23,12 +23,13 @@ const appsData = [
     },
     {
         id: 3,
-        name: "Simple Ledger",
-        category: "individual",
-        description: "Simple AI-powered tools to help small businesses grow. From inventory tracking to customer management - made beautifully simple.",
-        icon: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=100&fit=crop&crop=center",
-        featured: false,
-        comingSoon: true,
+        name: "Family Medicine Tracker",
+        category: "family",
+        description: "Family Medicine Tracker is your caring companion, designed to support you and your loved ones every step of the way.",
+        playStoreUrl: "https://play.google.com/store/apps/details?id=com.mspk.medicineintaketracker&hl=en_IN",
+        icon: "https://play-lh.googleusercontent.com/N0MG1Tg5Oyh-FobjPfdxdl402qJLwITfbq7vREEq0Lo8RcoYIFw2SNzSMagwOib84MY38WrvNCPxEEZl-UCAaw=w240-h480-rw",
+        featured: true,
+        comingSoon: false,
         ageGroup: "Adults"
     },
 ];// DOM Elements
