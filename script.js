@@ -42,6 +42,17 @@ const appsData = [
         comingSoon: false,
         ageGroup: "Adults"
     },
+    {
+        id: 5,
+        name: "Thirukkural",
+        category: "family",
+        description: "Discover the ancient wisdom of Thirukkural through interactive learning and fun games designed for children!",
+        playStoreUrl: "https://play.google.com/store/apps/details?id=com.mspk.thirukkural&hl=en_IN",
+        icon: "https://play-lh.googleusercontent.com/NJEJJ_oxkg1OusIvUAwTOEyj2EuC0HhIJw09xNZ5_i4upalrX14RaQj51UW8SnDAvKNaASc8e2sAUFSONv49EQ=w240-h480-rw",
+        featured: true,
+        comingSoon: false,
+        ageGroup: "Kids"
+    },
 ];// DOM Elements
 const appsGrid = document.getElementById('projectsGrid');
 const heroAppsGrid = document.getElementById('heroAppsGrid');
