@@ -10,7 +10,6 @@ const appsData = [
         featured: true,
         ageGroup: "All Ages"
     },
-    // Coming soon apps - AI powered adventures
     {
         id: 2,
         name: "Story Time",
@@ -22,23 +21,23 @@ const appsData = [
         ageGroup: "3-12 Years"
     },
     {
-        id: 3,
-        name: "Family Medicine Tracker",
-        category: "family",
-        description: "Family Medicine Tracker is your caring companion, designed to support you and your loved ones every step of the way.",
-        playStoreUrl: "https://play.google.com/store/apps/details?id=com.mspk.medicineintaketracker&hl=en_IN",
-        icon: "https://play-lh.googleusercontent.com/N0MG1Tg5Oyh-FobjPfdxdl402qJLwITfbq7vREEq0Lo8RcoYIFw2SNzSMagwOib84MY38WrvNCPxEEZl-UCAaw=w240-h480-rw",
-        featured: true,
-        comingSoon: false,
-        ageGroup: "Adults"
-    },
-    {
         id: 4,
         name: "Stock Tally",
         category: "individual",
         description: "Simple stock management, billing, and party ledger for small businesses.",
         playStoreUrl: "https://play.google.com/store/apps/details?id=com.mspk.st.stocktally&hl=en_IN",
         icon: "https://play-lh.googleusercontent.com/r5MaqzXjXwX8KD7t14FqbJNg0j5t6knPUEL7PzJ5ZT88Jzc0mWSoSERAXII-we0LzQqLF0Y2QQ5U2FWbKgVE6g=w240-h480-rw",
+        featured: true,
+        comingSoon: false,
+        ageGroup: "Adults"
+    },
+        {
+        id: 3,
+        name: "Family Medicine Tracker",
+        category: "family",
+        description: "Family Medicine Tracker is your caring companion, designed to support you and your loved ones every step of the way.",
+        playStoreUrl: "https://play.google.com/store/apps/details?id=com.mspk.medicineintaketracker&hl=en_IN",
+        icon: "https://play-lh.googleusercontent.com/N0MG1Tg5Oyh-FobjPfdxdl402qJLwITfbq7vREEq0Lo8RcoYIFw2SNzSMagwOib84MY38WrvNCPxEEZl-UCAaw=w240-h480-rw",
         featured: true,
         comingSoon: false,
         ageGroup: "Adults"
